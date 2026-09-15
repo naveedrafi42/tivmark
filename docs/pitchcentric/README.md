@@ -58,8 +58,13 @@ The current company fixture completes as a bounded MCP operation with a visible 
 - Assistant: 126 tests passed before the final cancellation case; the focused PitchCentric suite now has 15 passing cases.
 - Noodle: both entrypoints validate; embedded-assistant compatibility check passes. Remaining warnings concern the parent Tivmark project name, public privacy disclosure and real customer auth, which are not configured for this local simulation.
 - Noodle DevTools: synthetic company research and its inline editable card rendered, including the 390px mobile preview.
+- Browser: homepage → website carried forward → name/company → selected identity → profile with optional media skipped → topics/audience → review → three matches → simulated email signup → reload with profile/matches retained. Match cards rendered at 390px. Verified the hourly-limit message and restored a fresh demo session.
 - `node scripts/test-pitchcentric.mjs` passed against the actual loopback host/MCP/state boundary with synthetic visitors, both signup choices, stale edits, unknown research, wrong origins and cookie isolation.
 
 The SDK's local anonymous admission limit is 60 tool calls per hour per route/address. A proposed edit plus confirmed save uses two calls. The acceptance run consumes this allowance: restart the local MCP process before a separate browser demonstration, then use Start over for stale browser drafts. Restarting can expire local drafts. HTTP 429 is surfaced distinctly; edits are never automatically retried.
 
 The schema records a private draft. A proposal is not persisted until `save_guest_draft` succeeds. Successful save receipts set `write:false` so the assistant never loops saving the same proposal. Real authentication must replace the simulated account marker; an app-only visibility hint is not an authorization boundary.
+
+## Repository integration status
+
+PR: https://github.com/naveedrafi42/tivmark/pull/1. The configured origin is the personal fork. It has no active GitHub Actions workflows, and the required `gh pr merge --auto --merge` command was rejected with `Auto merge is not allowed for this repository (enablePullRequestAutoMerge)`. The PR remains open pending repository configuration; the task worktree is retained. No direct merge was used.
