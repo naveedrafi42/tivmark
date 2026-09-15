@@ -137,6 +137,8 @@ export function PitchOnboarding({ website }: { website: string }) {
       setBusy(false);
       return;
     }
+    setError('');
+    setBusy(true);
     if (!boot.current)
       boot.current = (async () => {
         const r = await fetch('/api/pitchcentric/onboarding', {
@@ -152,6 +154,7 @@ export function PitchOnboarding({ website }: { website: string }) {
     boot.current
       .then((r) => {
         if (!live || !r.draft) return;
+        setError('');
         adopt(r.draft);
         const next = nextStage(r.draft);
         setStage(next);

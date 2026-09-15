@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 // Synthetic end-to-end host -> MCP -> state test. Start the two local services first.
+// Uses the local SDK's 60-call hourly anonymous allowance. Restart MCP before a separate demo.
 const origin = "http://localhost:4002";
 function visitor() {
   let cookie = "";

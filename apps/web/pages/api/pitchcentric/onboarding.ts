@@ -74,7 +74,12 @@ export default async function handler(
       return res.status(400).json({ error: 'Invalid onboarding action.' });
     const result = await callOnboardingTool(body.action, body.args, key);
     return res.json({ result });
-  } catch {
+  } catch (error) {
+    if (error instanceof Error && error.message === 'MCP_RATE_LIMIT')
+      return res.status(429).json({
+        error:
+          'This demo’s hourly request limit has been reached. Please try again later, then reload your saved progress before retrying.',
+      });
     return res.status(503).json({
       error:
         'The local MCP service could not complete that step. Reconnect, then reload your saved progress.',

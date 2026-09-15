@@ -29,7 +29,8 @@ npm --prefix apps/assistant ci
 cd apps/assistant
 npx noodle dev src/pitchcentric-local-server.ts --org local --app pitchcentric --port 4011 --no-preview
 # terminal 2, repository root
-PITCHCENTRIC_LOCAL_DEMO=true APP_URL=http://localhost:4002 npm run dev:web
+cd apps/web
+PITCHCENTRIC_LOCAL_DEMO=true APP_URL=http://localhost:4002 NEXTAUTH_URL=http://localhost:4002 ../../node_modules/.bin/next dev --hostname 127.0.0.1 --port 4002
 # optional Noodle tool/card inspector
 cd apps/assistant
 npx noodle devtools src/pitchcentric-local-server.ts --port 4010 --headless
@@ -57,6 +58,8 @@ The current company fixture completes as a bounded MCP operation with a visible 
 - Assistant: 126 tests passed before the final cancellation case; the focused PitchCentric suite now has 15 passing cases.
 - Noodle: both entrypoints validate; embedded-assistant compatibility check passes. Remaining warnings concern the parent Tivmark project name, public privacy disclosure and real customer auth, which are not configured for this local simulation.
 - Noodle DevTools: synthetic company research and its inline editable card rendered, including the 390px mobile preview.
-- `node scripts/test-pitchcentric.mjs` exercises the actual loopback host/MCP/state boundary with synthetic visitors, both signup choices, stale edits, unknown research, wrong origins and cookie isolation. It deliberately paces calls under the local MCP request limit.
+- `node scripts/test-pitchcentric.mjs` passed against the actual loopback host/MCP/state boundary with synthetic visitors, both signup choices, stale edits, unknown research, wrong origins and cookie isolation.
+
+The SDK's local anonymous admission limit is 60 tool calls per hour per route/address. A proposed edit plus confirmed save uses two calls. The acceptance run consumes this allowance: restart the local MCP process before a separate browser demonstration, then use Start over for stale browser drafts. Restarting can expire local drafts. HTTP 429 is surfaced distinctly; edits are never automatically retried.
 
 The schema records a private draft. A proposal is not persisted until `save_guest_draft` succeeds. Successful save receipts set `write:false` so the assistant never loops saving the same proposal. Real authentication must replace the simulated account marker; an app-only visibility hint is not an authorization boundary.
