@@ -1,0 +1,283 @@
+@font-face {
+  font-family: PCInter;
+  src: url('/fonts/inter-latin.woff2') format('woff2');
+  font-display: swap;
+}
+@font-face {
+  font-family: PCJost;
+  src: url('/fonts/jost-latin.woff2') format('woff2');
+  font-display: swap;
+}
+.page {
+  background: #fff;
+  color: #192320;
+  font:
+    15px PCInter,
+    Arial,
+    sans-serif;
+  min-height: 100vh;
+}
+.header {
+  height: 98px;
+  padding: 0 6%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #e2e9df;
+}
+.header img {
+  width: 184px;
+  height: auto;
+}
+.header nav {
+  display: flex;
+  gap: 36px;
+  align-items: center;
+}
+.header nav span {
+  font-size: 12px;
+  color: #59716b;
+  background: #f1f5ed;
+  padding: 10px 16px;
+  border-radius: 30px;
+}
+.hero {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  background: linear-gradient(125deg, #a5dbd8 0%, #bbe0b1 58%, #d4eaa3 100%);
+  padding: 85px 6% 80px;
+  min-height: 640px;
+  overflow: hidden;
+}
+.copy {
+  position: relative;
+  z-index: 1;
+}
+.eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+.copy h1 {
+  font-family: PCJost, sans-serif;
+  font-weight: 500;
+  font-size: clamp(44px, 5.2vw, 78px);
+  line-height: 1.07;
+  letter-spacing: -2.5px;
+  margin: 28px 0;
+}
+.copy em {
+  font-style: normal;
+  border-bottom: 4px solid #192320;
+}
+.copy > p {
+  font-size: 17px;
+  line-height: 1.8;
+  margin-bottom: 30px;
+}
+.copy form {
+  max-width: 590px;
+}
+.copy label {
+  font-size: 12px;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 10px;
+}
+.inputRow {
+  display: flex;
+  align-items: center;
+  background: white;
+  border: 1px solid #a1bb9b;
+  border-radius: 12px;
+  padding: 7px;
+  gap: 10px;
+  box-shadow: 0 10px 25px #39583612;
+}
+.inputRow > span {
+  padding: 10px;
+  font-size: 22px;
+}
+.inputRow input {
+  min-width: 0;
+  flex: 1;
+  outline: none;
+  background: white;
+  padding: 12px 0;
+}
+.inputRow input:focus {
+  outline: 2px solid #446133;
+  outline-offset: 2px;
+}
+.inputRow button {
+  background: #192320;
+  color: white;
+  padding: 17px 22px;
+  border-radius: 8px;
+  white-space: nowrap;
+  font-weight: 600;
+}
+.inputRow button span {
+  margin-left: 15px;
+}
+.copy small {
+  display: block;
+  margin-top: 15px;
+  font-size: 11px;
+}
+.sample {
+  display: block;
+  font-size: 12px;
+  margin-top: 20px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.art {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.art > img {
+  position: relative;
+  z-index: 1;
+  max-width: 115%;
+  height: auto;
+  filter: drop-shadow(15px 30px 30px #31584630);
+}
+.orbit {
+  position: absolute;
+  width: 440px;
+  height: 440px;
+  border: 1px solid #ffffff60;
+  border-radius: 50%;
+}
+.note {
+  position: absolute;
+  z-index: 2;
+  right: 0;
+  bottom: 0;
+  background: #ffffffdf;
+  border: 1px solid white;
+  border-radius: 14px;
+  padding: 20px 24px;
+  box-shadow: 0 15px 35px #19232015;
+  transform: rotate(-4deg);
+}
+.note span {
+  font-size: 8px;
+  letter-spacing: 1px;
+}
+.note strong {
+  display: block;
+  font: 24px PCJost;
+  margin: 7px 0;
+}
+.note p {
+  font-size: 12px;
+  line-height: 1.6;
+}
+.how {
+  padding: 72px 6% 80px;
+}
+.how h2 {
+  font: 40px PCJost;
+  margin: 16px 0 38px;
+}
+.how > div {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 50px;
+}
+.how article > span {
+  font: 20px PCJost;
+  background: #edf5dc;
+  display: inline-flex;
+  padding: 10px 13px;
+  border-radius: 50%;
+  margin-bottom: 18px;
+}
+.how h3 {
+  font: 25px PCJost;
+  margin: 0 0 10px;
+}
+.how p {
+  line-height: 1.8;
+  color: #586860;
+  max-width: 330px;
+}
+.footer {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 6%;
+  padding: 25px 0;
+  border-top: 1px solid #e1e7df;
+  font-size: 12px;
+}
+.footer span {
+  color: #586860;
+}
+@media (max-width: 760px) {
+  .header {
+    height: 76px;
+  }
+  .header nav a {
+    display: none;
+  }
+  .header nav span {
+    font-size: 9px;
+    padding: 8px;
+  }
+  .header img {
+    width: 145px;
+  }
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 48px 6%;
+  }
+  .copy h1 {
+    font-size: 50px;
+  }
+  .copy > p {
+    font-size: 15px;
+  }
+  .inputRow {
+    flex-wrap: wrap;
+  }
+  .inputRow button {
+    width: 100%;
+  }
+  .art {
+    margin-top: 35px;
+    height: 300px;
+  }
+  .art > img {
+    height: 340px;
+    width: auto;
+  }
+  .orbit {
+    width: 280px;
+    height: 280px;
+  }
+  .note {
+    padding: 12px;
+    right: 0;
+  }
+  .how {
+    padding: 45px 6%;
+  }
+  .how h2 {
+    font-size: 32px;
+  }
+  .how > div {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+  .footer {
+    display: block;
+    line-height: 1.8;
+  }
+  .footer span {
+    display: block;
+  }
+}

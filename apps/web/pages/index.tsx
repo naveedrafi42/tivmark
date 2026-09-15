@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import PitchcentricHome from '@/components/pitchcentric/Home';
 import { getCsrfToken } from 'next-auth/react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import type {
@@ -19,13 +20,15 @@ import {
 
 const Home: NextPageWithLayout<
   InferGetServerSidePropsType<typeof getServerSideProps>
-> = ({
-  csrfToken,
-  authProviders,
-  recaptchaSiteKey,
-  initialTab,
-  onboardingBlueprint,
-}) => {
+> = (props) => {
+  if (props.pitchcentricDemo) return <PitchcentricHome />;
+  const {
+    csrfToken,
+    authProviders,
+    recaptchaSiteKey,
+    initialTab,
+    onboardingBlueprint,
+  } = props;
   return (
     <>
       <Head>
@@ -51,6 +54,12 @@ Home.getLayout = (page) => page;
 export const getServerSideProps = async (
   context: GetServerSidePropsContext
 ) => {
+  if (
+    process.env.PITCHCENTRIC_LOCAL_DEMO === 'true' ||
+    process.env.PITCHCENTRIC_DEMO_ENABLED === 'true'
+  ) {
+    return { props: { pitchcentricDemo: true as const } };
+  }
   const session = await getSession(context.req, context.res);
   const onboardingBlueprint = parseOnboardingBlueprint(
     context.req.cookies[ONBOARDING_BLUEPRINT_COOKIE]
@@ -72,6 +81,7 @@ export const getServerSideProps = async (
 
   return {
     props: {
+      pitchcentricDemo: false as const,
       ...(locale ? await serverSideTranslations(locale, ['common']) : {}),
       csrfToken: (await getCsrfToken(context)) || null,
       authProviders: authProviderEnabled(),
